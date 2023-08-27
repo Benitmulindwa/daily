@@ -3,18 +3,20 @@
 <body class="h-full">
     <div class="container">
         <h2>Login</h2>
-        <form action="#" method="POST" enctype="multipart/form-data">
 
-            <label for="email">Email:</label>
-            <input type="text" id="email" name="email" required>
+        <form action="{{url_for('login')}}" method="POST" enctype="multipart/form-data">
+            {{form.hidden_tag()}}
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+            {{form.email.label()}}
+            {{form.email(placeholder="Email")}}
+
+            {{form.password.label()}}
+            {{form.password(placeholder="Password")}}
 
             <button type="submit">Log In</button>
         </form>
 
-        <p>You don't have an account? <a href="#">Sign Up</a></p>
+        <p>Do not have an account? <a href="{{url_for('register')}}">Sign Up</a></p>
     </div>
 </body>
 
