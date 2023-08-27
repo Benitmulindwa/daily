@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, redirect, url_for, flash
 from daily.forms import RegisterForm, LoginForm
 from daily import app,db,bcrypt
 import requests
@@ -44,9 +44,11 @@ def login():
 
     if form.validate_on_submit():
         attempted_user = User.query.filter_by(email=form.email.data).first()
-
         if attempted_user and bcrypt.check_password_hash(attempted_user.password, form.password.data):
-                login_user(attempted_user)
-                return redirect(url_for("home"))
+            login_user(attempted_user)
+            flash(f"You have logged In successfully! Welcome back {attempted_user.username}", 'success')
+            return redirect(url_for("home"))
+        else:
+             flash("Username and Password are not match!", 'danger')
     
     return render_template("users/login.html", form=form)
