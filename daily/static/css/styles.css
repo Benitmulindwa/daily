@@ -1,3 +1,30 @@
+/* Navbar Buttons */
+.navbar-buttons {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  right: 25px;
+
+}
+
+.btn {
+  color: #efeff3;
+  padding: 10px;
+  background-color: #0a1323;
+  border-radius: 5px;
+  margin-left: 20px;
+  font-weight: bold;
+  text-decoration: none;
+
+}
+
+.btn:hover {
+  background-color: #425f92;
+}
+
+
+
 .flash-message {
   background-color: #4f658b;
   width: 50%;
@@ -89,14 +116,6 @@ p a {
   text-decoration: none;
 }
 
-
-
-
-
-
-
-
-
 /* pour le bolg */
 
 
@@ -118,9 +137,10 @@ body {
 }
 
 .top {
+  position: relative;
   background: #4e89ae;
   height: 180px;
-  border-top: 20px solid #43658b;
+  border-top: 20px solid #4e89ae;
 }
 
 .top .title {

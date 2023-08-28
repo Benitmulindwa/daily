@@ -3,7 +3,7 @@ from daily.forms import RegisterForm, LoginForm
 from daily import app,db,bcrypt
 import requests
 from daily.models import User
-from flask_login import login_user
+from flask_login import login_user, logout_user
 
 @app.route("/")
 def home():
@@ -52,3 +52,9 @@ def login():
              flash("Username and Password are not match!", 'danger')
     
     return render_template("users/login.html", form=form)
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    flash("You have logged out successfully!", 'info')
+    return redirect(url_for("login"))

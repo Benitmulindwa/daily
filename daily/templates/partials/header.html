@@ -22,7 +22,7 @@
                 setTimeout(function () {
                     var flashMessage = document.querySelector('.flash-message');
                     flashMessage.parentNode.removeChild(flashMessage);
-                }, 5000);
+                }, 4000);
             </script>
             {% endfor %}
             {%endif%}
@@ -30,7 +30,22 @@
         </div>
 
         <div class="top">
+            <div class="navbar-buttons">
+                {% if current_user.is_authenticated%}
+                <p style="color: aliceblue; font-weight:bold;">
+                    Welcome, {{current_user.username}}!
+                </p>
+                <a href="{{url_for('logout')}}" class="btn btn-danger">Logout</a>
+
+                {%else%}
+
+                <a href="{{url_for('register')}}" class="btn btn-primary">Register</a>
+                <a href="{{url_for('login')}}" class="btn btn-secondary">Login</a>
+
+
+                {%endif%}
+            </div>
             <div class="title">
-                <h1>Daily</h1>
+                <h1 style="font-weight: bold;">Daily</h1>
             </div>
         </div>
