@@ -3,16 +3,17 @@ from daily.forms import RegisterForm, LoginForm
 from daily import app,db,bcrypt
 import requests
 from daily.models import User
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required
 
-@app.route("/")
+@app.route("/home")
+@login_required
 def home():
     response = requests.get("https://api.npoint.io/b26898f9241e01f827c6")
     data = response.json()
     return render_template("index.html", posts=data)
 
-
 @app.route("/post/<int:id>")
+@login_required
 def blog(id):
     response = requests.get("https://api.npoint.io/b26898f9241e01f827c6")
     data = response.json()
@@ -46,7 +47,7 @@ def login():
         attempted_user = User.query.filter_by(email=form.email.data).first()
         if attempted_user and bcrypt.check_password_hash(attempted_user.password, form.password.data):
             login_user(attempted_user)
-            flash(f"You have logged In successfully! Welcome back {attempted_user.username}", 'success')
+            flash(f"You have logged In successfully!", 'success')
             return redirect(url_for("home"))
         else:
              flash("Username and Password are not match!", 'danger')

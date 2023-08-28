@@ -9,5 +9,6 @@ app.config['SECRET_KEY'] = "2aa6174651ea12849f0307e8"
 db = SQLAlchemy(app)
 bcrypt=Bcrypt(app)
 login_manager = LoginManager(app)
+login_manager.login_view='login'
 
 from daily import routes
